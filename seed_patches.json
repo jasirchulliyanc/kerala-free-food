@@ -1,0 +1,30 @@
+[
+  {
+    "key": "patch-vaikom-timing-1",
+    "match_name": "Vaikom Sree Mahadeva Temple – Prathal",
+    "set": {
+      "timing": "Daily lunch (Prathal), around 11 am – 1 pm, after the ucha pooja"
+    }
+  },
+  {
+    "key": "patch-sabarimala-timing-1",
+    "match_name": "Sabarimala Annadanam (Travancore Devaswom Board)",
+    "set": {
+      "timing": "Three meals a day at the annadanam hall, on every day the temple is open. Season: 16 Nov 2026 – 20 Jan 2027 (closed 27–30 Dec)"
+    }
+  },
+  {
+    "key": "patch-sulaimani-link-1",
+    "match_name": "Operation Sulaimani – free meal coupons",
+    "set": {
+      "donate_url": ""
+    }
+  },
+  {
+    "key": "patch-guruvayur-timing-1",
+    "match_name": "Guruvayur Sri Krishna Temple – Prasada Oottu",
+    "set": {
+      "timing": "Daily – lunch about 10:30 am – 1:30 pm, and again around 7:30 pm"
+    }
+  }
+]

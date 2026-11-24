@@ -64,6 +64,28 @@ try {
   if (e.code !== 'ENOENT') console.error('Seed failed:', e.message);
 }
 
+// One-time corrections to seeded listings (only touches rows still marked as seed data).
+try {
+  const patches = JSON.parse(fs.readFileSync(path.join(__dirname, 'seed_patches.json'), 'utf8'));
+  const seen = db.prepare('SELECT 1 FROM seeds_applied WHERE key=?');
+  const mark = db.prepare('INSERT INTO seeds_applied (key, applied_at) VALUES (?, ?)');
+  const ALLOWED = ['timing', 'notes', 'address', 'contact', 'donate_url', 'donate_info', 'map_url'];
+  let n = 0;
+  for (const p of patches) {
+    if (!p.key || seen.get(p.key)) continue;
+    const cols = Object.keys(p.set || {}).filter(k => ALLOWED.includes(k));
+    if (cols.length) {
+      db.prepare(`UPDATE listings SET ${cols.map(c => c + '=?').join(',')} WHERE name=? AND submitter_name='Seed data'`)
+        .run(...cols.map(c => String(p.set[c])), p.match_name);
+    }
+    mark.run(p.key, new Date().toISOString());
+    n++;
+  }
+  if (n) console.log(`Applied ${n} seed correction(s).`);
+} catch (e) {
+  if (e.code !== 'ENOENT') console.error('Seed patches failed:', e.message);
+}
+
 const DISTRICTS = ['Thiruvananthapuram', 'Kollam', 'Pathanamthitta', 'Alappuzha', 'Kottayam', 'Idukki', 'Ernakulam',
   'Thrissur', 'Palakkad', 'Malappuram', 'Kozhikode', 'Wayanad', 'Kannur', 'Kasaragod'];
 const TYPES = ['Temple annadanam', 'Mosque / iftar', 'Church', 'Gurudwara langar', 'Community kitchen',

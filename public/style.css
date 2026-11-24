@@ -1,0 +1,91 @@
+/*
+VOICE: warm, generous, practical — a community noticeboard, not an app store.
+IDEA: a banana-leaf sadya: every listing is a serving on the leaf.
+PICTURE: a large banana leaf with rice and small curries in the header band.
+COLOUR and TYPE: leaf green field, rice white, turmeric accent; Baloo Chettan 2 (Malayalam-ready) + Noto Sans.
+LAYOUT: green band with title + leaf, sticky filters, card grid, calm one-column submit form.
+*/
+:root{color-scheme:light dark;
+  --bg:light-dark(#fbfaf5,#0f1a12);--card:light-dark(#ffffff,#16241a);--ink:light-dark(#17261b,#e9efe6);
+  --muted:light-dark(#5b6b5f,#a4b3a6);--line:light-dark(#e3e6dc,#26382b);
+  --leaf:#1f6b35;--leaf-d:#134a24;--turmeric:#f2b705;--chilli:#c8361b;--on-leaf:#f4f8ef}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Noto Sans",system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:"Baloo Chettan 2","Noto Sans",sans-serif;line-height:1.08;margin:0;text-wrap:balance}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 max(4vw,16px)}
+
+/* hero */
+.hero{background:var(--leaf);color:var(--on-leaf);position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px;align-items:center;padding-block:clamp(28px,4vw,56px)}
+.hero h1{font-size:clamp(34px,5vw,52px);font-weight:700}
+.hero .ml{font-family:"Baloo Chettan 2",sans-serif;font-size:22px;color:var(--turmeric);margin:6px 0 12px}
+.hero p{max-width:52ch;margin:0 0 20px;opacity:.92}
+.hero .leafsvg{width:100%;height:auto;max-height:300px}
+.stats{display:flex;gap:28px;flex-wrap:wrap}
+.stats b{display:block;font:700 32px/1 "Baloo Chettan 2",sans-serif;color:var(--turmeric)}
+.stats span{font-size:14px;opacity:.85}
+nav.top{display:flex;justify-content:space-between;align-items:center;padding-top:14px;font-size:15px;gap:12px;flex-wrap:wrap}
+nav.top a{color:var(--on-leaf);text-decoration:none;opacity:.9}
+nav.top .brand{font:700 18px "Baloo Chettan 2",sans-serif;opacity:1}
+
+/* buttons & inputs */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:0;
+  font:600 15px "Noto Sans",sans-serif;cursor:pointer;text-decoration:none;background:var(--turmeric);color:#1d1600}
+.btn.ghost{background:transparent;color:inherit;border:1.5px solid currentColor}
+.btn.green{background:var(--leaf);color:var(--on-leaf)}
+.btn.red{background:var(--chilli);color:#fff}
+.btn:disabled{opacity:.55;cursor:wait}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--turmeric);outline-offset:2px}
+input,select,textarea{font:16px "Noto Sans",sans-serif;width:100%;min-height:44px;padding:10px 12px;border-radius:10px;
+  border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+textarea{min-height:90px;resize:vertical}
+label{display:block;font-weight:600;font-size:15px;margin-bottom:6px}
+label small{font-weight:400;color:var(--muted)}
+
+/* filters */
+.filters{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.filters .wrap{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:10px;padding-block:12px}
+
+/* list */
+.band{padding-block:clamp(24px,4vw,48px)}
+.listhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.listhead h2{font-size:32px}
+.count{color:var(--muted);font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.card h3{font-size:22px}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:13px;padding:3px 10px;border-radius:999px;background:light-dark(#e8f2e6,#1f3524);color:light-dark(var(--leaf-d),#bfe0c3)}
+.tag.dist{background:light-dark(#fff3cc,#3a3010);color:light-dark(#6b4f00,#f6d878)}
+.row{display:grid;grid-template-columns:22px minmax(0,1fr);gap:6px;font-size:15px}
+.row svg{width:18px;height:18px;margin-top:3px;color:var(--leaf)}
+.notes{font-size:15px;color:var(--muted);margin:0}
+.card .actions{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap;padding-top:4px}
+.card .actions a{font-size:14px;font-weight:600;color:light-dark(var(--leaf),#8fd19e)}
+.empty{padding:40px 20px;text-align:center;color:var(--muted);border:1.5px dashed var(--line);border-radius:16px}
+
+/* submit */
+.submit{background:light-dark(#eef4ea,#122015);border-top:1px solid var(--line)}
+.submit .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:40px}
+.submit h2{font-size:36px;margin-bottom:10px}
+.submit ol{padding-left:20px;color:var(--muted)}
+form .f{margin-bottom:16px}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.msg{padding:12px 14px;border-radius:10px;margin-bottom:16px;font-size:15px}
+.msg.ok{background:light-dark(#dff1df,#173a1f);color:light-dark(#134a24,#c7f0cf)}
+.msg.err{background:light-dark(#fde3dd,#3d1810);color:light-dark(#8a1f0b,#ffc9bc)}
+footer{padding:28px 0;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media(max-width:820px){.submit .wrap{grid-template-columns:minmax(0,1fr);gap:16px}}
+@media(max-width:600px){
+  .hero .wrap{grid-template-columns:minmax(0,1fr)}
+  .hero .leafsvg{max-height:180px;order:-1}
+  .filters .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .filters .wrap input{grid-column:1/-1}
+  .two{grid-template-columns:minmax(0,1fr)}
+}
+@media(prefers-reduced-motion:no-preference){.card{animation:rise .35s ease both}@keyframes rise{from{opacity:0;transform:translateY(6px)}}}

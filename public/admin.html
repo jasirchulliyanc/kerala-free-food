@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Admin · Free Food Kerala</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500;700&family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .hero .wrap{display:block;padding-block:18px 22px}
+  .hero h1{font-size:34px}
+  .login{max-width:420px;margin:48px auto;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+  .tabs button{min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font:600 15px "Noto Sans",sans-serif;cursor:pointer}
+  .tabs button[aria-selected=true]{background:var(--leaf);border-color:var(--leaf);color:var(--on-leaf)}
+  .tabs .n{font-weight:400;opacity:.8;margin-left:4px}
+  .meta{font-size:13px;color:var(--muted)}
+  .card form .f{margin-bottom:10px}
+  .card .actions{gap:8px}
+  .card .actions .btn{min-height:40px;padding:0 14px;font-size:14px}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <nav class="top" style="padding-top:0;margin-bottom:10px"><a class="brand" href="/">← Free Food Kerala</a><button class="btn ghost" id="logout" hidden style="min-height:38px">Log out</button></nav>
+    <h1>Review listings</h1>
+  </div>
+</header>
+
+<section id="loginBox" class="wrap" hidden>
+  <form class="login" id="loginForm">
+    <h2 style="font-size:26px;margin-bottom:14px">Admin login</h2>
+    <div id="loginMsg" aria-live="polite"></div>
+    <div class="f" style="margin-bottom:14px"><label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password" required></div>
+    <button class="btn green" type="submit">Log in</button>
+  </form>
+</section>
+
+<main id="panel" class="band" hidden>
+  <div class="wrap">
+    <div class="tabs" role="tablist">
+      <button role="tab" data-s="pending" aria-selected="true">Pending<span class="n" id="n-pending"></span></button>
+      <button role="tab" data-s="approved" aria-selected="false">Approved<span class="n" id="n-approved"></span></button>
+      <button role="tab" data-s="rejected" aria-selected="false">Rejected<span class="n" id="n-rejected"></span></button>
+    </div>
+    <div id="toast" aria-live="polite"></div>
+    <div class="grid" id="grid"></div>
+  </div>
+</main>
+<script src="/admin.js"></script>
+</body>
+</html>

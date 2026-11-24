@@ -8,7 +8,9 @@
     "address": "Annadanam hall, Guruvayur Sri Krishna Temple",
     "timing": "Daily, lunch around 10:30 am – 1:30 pm",
     "contact": "0487 2556335",
-    "notes": "Free daily meal served as prasadam: rice, sambar, avial, pickle, sometimes payasam. Donations welcome but not required. Temple dress code applies."
+    "notes": "Free daily meal served as prasadam: rice, sambar, avial, pickle, sometimes payasam. Donations welcome but not required. Temple dress code applies.",
+    "donate_url": "https://guruvayurdevaswom.in/",
+    "donate_info": "Sponsor the Prasadaoottu online: on the Guruvayur Devaswom site, register, then Donation → Prasadaoottu / Annaprasadam. You can also give at the Devaswom counter. The Devaswom has no agents, so pay only through its official site."
   },
   {
     "key": "parassinikadavu-muthappan",
@@ -30,7 +32,9 @@
     "address": "Annadanam hall, Sannidhanam",
     "timing": "Pilgrim season 16 Nov 2026 – 20 Jan 2027 (temple closed 27–30 Dec)",
     "contact": "",
-    "notes": "Kerala sadya with payasam is served at the annadanam for pilgrims this season. Darshan needs online booking. Only during the pilgrimage season."
+    "notes": "Kerala sadya with payasam is served at the annadanam for pilgrims this season. Darshan needs online booking. Only during the pilgrimage season.",
+    "donate_url": "https://onlinetdb.com/",
+    "donate_info": "Give to the annadanam fund online through the Travancore Devaswom Board portal (e-kanikka), or contact the Executive Officer, Sabarimala Devaswom: 04735-202028."
   },
   {
     "key": "chottanikkara-annaprasadam",
@@ -41,7 +45,9 @@
     "address": "Chottanikkara Bhagavathy Temple, about 17 km from Ernakulam",
     "timing": "Daily, 1 pm – 3 pm",
     "contact": "0484 2711032",
-    "notes": "Free lunch for devotees at the annadanam complex. Run by the Cochin Devaswom Board."
+    "notes": "Free lunch for devotees at the annadanam complex. Run by the Cochin Devaswom Board.",
+    "donate_url": "https://chottanikkarabhagavathy.org/",
+    "donate_info": "Annadanam can be booked as an offering (vazhipadu) at the temple counter or through the temple's official website."
   },
   {
     "key": "vaikom-prathal",
@@ -74,7 +80,9 @@
     "address": "Government Medical College Hospital",
     "timing": "Daily lunch, around noon",
     "contact": "",
-    "notes": "Free home-cooked lunch packets for patients and bystanders, run by DYFI volunteers since 2017. Hospital food arrangements were under review in 2026, so check locally."
+    "notes": "Free home-cooked lunch packets for patients and bystanders, run by DYFI volunteers since 2017. Hospital food arrangements were under review in 2026, so check locally.",
+    "donate_url": "",
+    "donate_info": "Lunch packets are cooked by local households. To help, contact your local DYFI unit and offer to cook packets."
   },
   {
     "key": "dyfi-hridayapoorvam-kozhikode-mch",
@@ -85,7 +93,9 @@
     "address": "Government Medical College Hospital",
     "timing": "Daily lunch, around noon",
     "contact": "",
-    "notes": "Free lunch packets for patients and bystanders, collected from local households by DYFI volunteers. Hospital food arrangements were under review in 2026, so check locally."
+    "notes": "Free lunch packets for patients and bystanders, collected from local households by DYFI volunteers. Hospital food arrangements were under review in 2026, so check locally.",
+    "donate_url": "",
+    "donate_info": "Lunch packets are collected from local households in turn. To help, contact your local DYFI unit and offer to cook packets."
   },
   {
     "key": "kasaragod-district-hospital-meals",
@@ -97,5 +107,18 @@
     "timing": "Breakfast, lunch and dinner for admitted patients",
     "contact": "",
     "notes": "The district panchayat added free breakfast in June 2026. Lunch and dinner come from community initiatives. For in-patients only."
+  },
+  {
+    "key": "mannarasala-annadanam",
+    "name": "Mannarasala Sree Nagaraja Temple – Annadanam",
+    "type": "Temple annadanam",
+    "district": "Alappuzha",
+    "place": "Mannarasala, Haripad",
+    "address": "Mannarasala Sree Nagaraja Temple",
+    "timing": "Daily – confirm the time at the temple",
+    "contact": "",
+    "notes": "Daily annadanam open to every pilgrim, whatever their background.",
+    "donate_url": "https://mannarasala.org/devotee/annadanam",
+    "donate_info": "To give to the Annadanam fund, message the temple's official WhatsApp number +91 6238060751 and they'll explain how."
   }
 ]

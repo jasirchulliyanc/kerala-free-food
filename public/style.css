@@ -64,6 +64,12 @@ label small{font-weight:400;color:var(--muted)}
 .notes{font-size:15px;color:var(--muted);margin:0}
 .card .actions{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap;padding-top:4px}
 .card .actions a{font-size:14px;font-weight:600;color:light-dark(var(--leaf),#8fd19e)}
+.give{display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:12px;background:light-dark(#fff7dc,#2c2510);font-size:15px}
+.give b{font-size:14px;color:light-dark(#6b4f00,#f6d878)}
+.give .give-btn{align-self:flex-start;min-height:40px;font-size:14px;padding:0 14px}
+.givebox{border:1.5px dashed var(--line);border-radius:12px;padding:14px;margin:0 0 16px}
+.givebox legend{font-weight:600;padding:0 6px}
+.givebox legend small{font-weight:400;color:var(--muted)}
 .empty{padding:40px 20px;text-align:center;color:var(--muted);border:1.5px dashed var(--line);border-radius:16px}
 
 /* submit */

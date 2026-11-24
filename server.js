@@ -36,6 +36,12 @@ db.exec(`
   CREATE INDEX IF NOT EXISTS idx_status ON listings(status);
   CREATE TABLE IF NOT EXISTS seeds_applied (key TEXT PRIMARY KEY, applied_at TEXT NOT NULL);
 `);
+// migrations: donation details
+{
+  const cols = db.prepare('PRAGMA table_info(listings)').all().map(c => c.name);
+  if (!cols.includes('donate_url')) db.exec('ALTER TABLE listings ADD COLUMN donate_url TEXT');
+  if (!cols.includes('donate_info')) db.exec('ALTER TABLE listings ADD COLUMN donate_info TEXT');
+}
 
 // One-time seed: each entry in seed.json is inserted once (approved) and never re-added,
 // so listings the admin edits or deletes stay that way across redeploys.
@@ -43,13 +49,13 @@ try {
   const seeds = JSON.parse(fs.readFileSync(path.join(__dirname, 'seed.json'), 'utf8'));
   const seen = db.prepare('SELECT 1 FROM seeds_applied WHERE key=?');
   const mark = db.prepare('INSERT INTO seeds_applied (key, applied_at) VALUES (?, ?)');
-  const ins = db.prepare(`INSERT INTO listings (name,type,district,place,address,timing,contact,map_url,notes,submitter_name,status,created_at,reviewed_at)
-    VALUES (?,?,?,?,?,?,?,?,?,'Seed data',?,?,?)`);
+  const ins = db.prepare(`INSERT INTO listings (name,type,district,place,address,timing,contact,map_url,notes,donate_url,donate_info,submitter_name,status,created_at,reviewed_at)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,'Seed data',?,?,?)`);
   let added = 0;
   for (const s of seeds) {
     if (!s.key || seen.get(s.key)) continue;
     const t = new Date().toISOString();
-    ins.run(s.name, s.type, s.district, s.place, s.address || '', s.timing, s.contact || '', s.map_url || '', s.notes || '', 'approved', t, t);
+    ins.run(s.name, s.type, s.district, s.place, s.address || '', s.timing, s.contact || '', s.map_url || '', s.notes || '', s.donate_url || '', s.donate_info || '', 'approved', t, t);
     mark.run(s.key, t);
     added++;
   }
@@ -86,6 +92,7 @@ function validate(body) {
     name: str(body.name, 120), type: str(body.type, 40), district: str(body.district, 40),
     place: str(body.place, 80), address: str(body.address, 300), timing: str(body.timing, 200),
     contact: str(body.contact, 100), map_url: str(body.map_url, 500), notes: str(body.notes, 600),
+    donate_url: str(body.donate_url, 500), donate_info: str(body.donate_info, 400),
     submitter_name: str(body.submitter_name, 80), submitter_contact: str(body.submitter_contact, 100)
   };
   const errors = [];
@@ -95,6 +102,7 @@ function validate(body) {
   if (d.place.length < 2) errors.push('Town / area is required.');
   if (d.timing.length < 2) errors.push('Timing is required.');
   if (d.map_url && !/^https:\/\/\S+$/i.test(d.map_url)) errors.push('Map link must start with https://');
+  if (d.donate_url && !/^https:\/\/\S+$/i.test(d.donate_url)) errors.push('Donation link must start with https://');
   return { d, errors };
 }
 
@@ -128,7 +136,7 @@ function sameOrigin(req, res, next) {
   next();
 }
 
-const PUBLIC_COLS = 'id, name, type, district, place, address, timing, contact, map_url, notes, reviewed_at';
+const PUBLIC_COLS = 'id, name, type, district, place, address, timing, contact, map_url, notes, donate_url, donate_info, reviewed_at';
 
 // ---------- public API ----------
 app.get('/api/meta', (req, res) => res.json({ districts: DISTRICTS, types: TYPES }));
@@ -145,9 +153,9 @@ app.post('/api/submissions', sameOrigin, (req, res) => {
   if (errors.length) return res.status(400).json({ error: errors.join(' ') });
   const pending = db.prepare("SELECT COUNT(*) AS n FROM listings WHERE status='pending'").get().n;
   if (pending > 2000) return res.status(503).json({ error: 'The review queue is full. Please try again later.' });
-  db.prepare(`INSERT INTO listings (name,type,district,place,address,timing,contact,map_url,notes,submitter_name,submitter_contact,status,created_at)
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,'pending',?)`)
-    .run(d.name, d.type, d.district, d.place, d.address, d.timing, d.contact, d.map_url, d.notes, d.submitter_name, d.submitter_contact, now());
+  db.prepare(`INSERT INTO listings (name,type,district,place,address,timing,contact,map_url,notes,donate_url,donate_info,submitter_name,submitter_contact,status,created_at)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,'pending',?)`)
+    .run(d.name, d.type, d.district, d.place, d.address, d.timing, d.contact, d.map_url, d.notes, d.donate_url, d.donate_info, d.submitter_name, d.submitter_contact, now());
   res.json({ ok: true });
 });
 
@@ -189,8 +197,8 @@ app.post('/api/admin/listings/:id/status', sameOrigin, requireAdmin, (req, res) 
 app.put('/api/admin/listings/:id', sameOrigin, requireAdmin, (req, res) => {
   const { d, errors } = validate(req.body || {});
   if (errors.length) return res.status(400).json({ error: errors.join(' ') });
-  const r = db.prepare(`UPDATE listings SET name=?,type=?,district=?,place=?,address=?,timing=?,contact=?,map_url=?,notes=? WHERE id=?`)
-    .run(d.name, d.type, d.district, d.place, d.address, d.timing, d.contact, d.map_url, d.notes, Number(req.params.id));
+  const r = db.prepare(`UPDATE listings SET name=?,type=?,district=?,place=?,address=?,timing=?,contact=?,map_url=?,notes=?,donate_url=?,donate_info=? WHERE id=?`)
+    .run(d.name, d.type, d.district, d.place, d.address, d.timing, d.contact, d.map_url, d.notes, d.donate_url, d.donate_info, Number(req.params.id));
   r.changes ? res.json({ ok: true }) : res.status(404).json({ error: 'Not found' });
 });
 

@@ -13,6 +13,7 @@
   function card(l) {
     const map = /^https:\/\//i.test(l.map_url || '') ? l.map_url : 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent([l.name, l.place, 'Kerala'].join(', '));
     const tel = (l.contact || '').replace(/[^\d+]/g, '');
+    const donate = /^https:\/\//i.test(l.donate_url || '') ? l.donate_url : '';
     return `<article class="card">
       <div class="tags"><span class="tag dist">${esc(l.district)}</span><span class="tag">${esc(l.type)}</span></div>
       <h3>${esc(l.name)}</h3>
@@ -20,6 +21,7 @@
       <div class="row">${ICON.time}<span>${esc(l.timing)}</span></div>
       ${l.contact ? `<div class="row">${ICON.phone}<span>${esc(l.contact)}</span></div>` : ''}
       ${l.notes ? `<p class="notes">${esc(l.notes)}</p>` : ''}
+      ${l.donate_info || donate ? `<div class="give"><b>Support this place</b>${l.donate_info ? `<span>${esc(l.donate_info)}</span>` : ''}${donate ? `<a class="btn give-btn" href="${esc(donate)}" target="_blank" rel="noopener noreferrer">Donate on their site ↗</a>` : ''}</div>` : ''}
       <div class="actions"><a href="${esc(map)}" target="_blank" rel="noopener noreferrer">Open in Maps ↗</a>${tel.length >= 6 ? `<a href="tel:${esc(tel)}">Call</a>` : ''}</div>
     </article>`;
   }

@@ -28,6 +28,8 @@
       ${l.contact ? `<div><b>Phone:</b> ${esc(l.contact)}</div>` : ''}
       ${l.map_url ? `<div><b>Map:</b> ${/^https:\/\//i.test(l.map_url) ? `<a href="${esc(l.map_url)}" target="_blank" rel="noopener noreferrer">${esc(l.map_url.slice(0, 60))}</a>` : esc(l.map_url)}</div>` : ''}
       ${l.notes ? `<p class="notes">${esc(l.notes)}</p>` : ''}
+      ${l.donate_info ? `<div><b>Donate:</b> ${esc(l.donate_info)}</div>` : ''}
+      ${l.donate_url ? `<div><b>Donation link:</b> ${/^https:\/\//i.test(l.donate_url) ? `<a href="${esc(l.donate_url)}" target="_blank" rel="noopener noreferrer">${esc(l.donate_url.slice(0, 60))}</a>` : esc(l.donate_url)}</div>` : ''}
       <div class="meta">Submitted ${esc(when(l.created_at))}${l.submitter_name || l.submitter_contact ? ' by ' + esc([l.submitter_name, l.submitter_contact].filter(Boolean).join(', ')) : ''}</div>
       <div class="actions">${btns}<button class="btn ghost" data-act="edit">Edit</button></div>
     </article>`;
@@ -40,6 +42,8 @@
       <div class="two f"><div><label>Type</label><select name="type">${opts(meta.types, l.type)}</select></div><div><label>District</label><select name="district">${opts(meta.districts, l.district)}</select></div></div>
       ${inp('place', 'Town / area')}${inp('timing', 'Timing')}${inp('address', 'Address')}${inp('contact', 'Phone')}${inp('map_url', 'Map link (https://)')}
       <div class="f"><label>Notes</label><textarea name="notes">${esc(l.notes)}</textarea></div>
+      <div class="f"><label>How to donate</label><textarea name="donate_info">${esc(l.donate_info)}</textarea></div>
+      ${inp('donate_url', 'Donation link (https://)')}
       <div class="actions"><button class="btn green" type="submit">Save</button><button class="btn ghost" type="button" data-act="cancel">Cancel</button></div>
     </form></article>`;
   }

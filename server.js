@@ -36,11 +36,13 @@ db.exec(`
   CREATE INDEX IF NOT EXISTS idx_status ON listings(status);
   CREATE TABLE IF NOT EXISTS seeds_applied (key TEXT PRIMARY KEY, applied_at TEXT NOT NULL);
 `);
-// migrations: donation details
+// migrations: donation details + Malayalam text
+const ML_FIELDS = ['name', 'place', 'timing', 'notes', 'donate_info'];
 {
   const cols = db.prepare('PRAGMA table_info(listings)').all().map(c => c.name);
   if (!cols.includes('donate_url')) db.exec('ALTER TABLE listings ADD COLUMN donate_url TEXT');
   if (!cols.includes('donate_info')) db.exec('ALTER TABLE listings ADD COLUMN donate_info TEXT');
+  for (const c of ML_FIELDS.map(f => f + '_ml')) if (!cols.includes(c)) db.exec(`ALTER TABLE listings ADD COLUMN ${c} TEXT`);
 }
 
 // One-time seed: each entry in seed.json is inserted once (approved) and never re-added,
@@ -86,6 +88,25 @@ try {
   if (e.code !== 'ENOENT') console.error('Seed patches failed:', e.message);
 }
 
+// One-time Malayalam text for seeded listings.
+try {
+  const items = JSON.parse(fs.readFileSync(path.join(__dirname, 'seed_ml.json'), 'utf8'));
+  const seen = db.prepare('SELECT 1 FROM seeds_applied WHERE key=?');
+  const mark = db.prepare('INSERT INTO seeds_applied (key, applied_at) VALUES (?, ?)');
+  const upd = db.prepare(`UPDATE listings SET ${ML_FIELDS.map(f => f + '_ml=?').join(',')} WHERE name=? AND submitter_name='Seed data'`);
+  let n = 0;
+  for (const it of items) {
+    const key = 'ml:' + it.match_name;
+    if (seen.get(key)) continue;
+    upd.run(...ML_FIELDS.map(f => it[f] || ''), it.match_name);
+    mark.run(key, new Date().toISOString());
+    n++;
+  }
+  if (n) console.log(`Applied Malayalam text to ${n} listing(s).`);
+} catch (e) {
+  if (e.code !== 'ENOENT') console.error('Malayalam seed failed:', e.message);
+}
+
 const DISTRICTS = ['Thiruvananthapuram', 'Kollam', 'Pathanamthitta', 'Alappuzha', 'Kottayam', 'Idukki', 'Ernakulam',
   'Thrissur', 'Palakkad', 'Malappuram', 'Kozhikode', 'Wayanad', 'Kannur', 'Kasaragod'];
 const TYPES = ['Temple annadanam', 'Mosque / iftar', 'Church', 'Gurudwara langar', 'Community kitchen',
@@ -115,6 +136,8 @@ function validate(body) {
     place: str(body.place, 80), address: str(body.address, 300), timing: str(body.timing, 200),
     contact: str(body.contact, 100), map_url: str(body.map_url, 500), notes: str(body.notes, 600),
     donate_url: str(body.donate_url, 500), donate_info: str(body.donate_info, 400),
+    name_ml: str(body.name_ml, 200), place_ml: str(body.place_ml, 120), timing_ml: str(body.timing_ml, 300),
+    notes_ml: str(body.notes_ml, 900), donate_info_ml: str(body.donate_info_ml, 600),
     submitter_name: str(body.submitter_name, 80), submitter_contact: str(body.submitter_contact, 100)
   };
   const errors = [];
@@ -158,7 +181,7 @@ function sameOrigin(req, res, next) {
   next();
 }
 
-const PUBLIC_COLS = 'id, name, type, district, place, address, timing, contact, map_url, notes, donate_url, donate_info, reviewed_at';
+const PUBLIC_COLS = 'id, name, type, district, place, address, timing, contact, map_url, notes, donate_url, donate_info, name_ml, place_ml, timing_ml, notes_ml, donate_info_ml, reviewed_at';
 
 // ---------- public API ----------
 app.get('/api/meta', (req, res) => res.json({ districts: DISTRICTS, types: TYPES }));
@@ -219,8 +242,8 @@ app.post('/api/admin/listings/:id/status', sameOrigin, requireAdmin, (req, res) 
 app.put('/api/admin/listings/:id', sameOrigin, requireAdmin, (req, res) => {
   const { d, errors } = validate(req.body || {});
   if (errors.length) return res.status(400).json({ error: errors.join(' ') });
-  const r = db.prepare(`UPDATE listings SET name=?,type=?,district=?,place=?,address=?,timing=?,contact=?,map_url=?,notes=?,donate_url=?,donate_info=? WHERE id=?`)
-    .run(d.name, d.type, d.district, d.place, d.address, d.timing, d.contact, d.map_url, d.notes, d.donate_url, d.donate_info, Number(req.params.id));
+  const r = db.prepare(`UPDATE listings SET name=?,type=?,district=?,place=?,address=?,timing=?,contact=?,map_url=?,notes=?,donate_url=?,donate_info=?,name_ml=?,place_ml=?,timing_ml=?,notes_ml=?,donate_info_ml=? WHERE id=?`)
+    .run(d.name, d.type, d.district, d.place, d.address, d.timing, d.contact, d.map_url, d.notes, d.donate_url, d.donate_info, d.name_ml, d.place_ml, d.timing_ml, d.notes_ml, d.donate_info_ml, Number(req.params.id));
   r.changes ? res.json({ ok: true }) : res.status(404).json({ error: 'Not found' });
 });
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ml">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,18 +7,18 @@
 <meta name="description" content="Find free meals across Kerala — temple annadanam, community kitchens, langars, charity meals. Listings added by the community and checked by an admin.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <header class="hero">
-  <div class="wrap" style="padding-block:0;display:block"><nav class="top"><span class="brand">Free Food Kerala</span><a href="#submit">Add a place →</a></nav></div>
+  <div class="wrap" style="padding-block:0;display:block"><nav class="top"><span class="brand" data-i18n="brand">Free Food Kerala</span><span class="navr"><a href="#submit" data-i18n="navAdd">Add a place →</a><span class="lang" role="group" aria-label="Language"><button type="button" data-lang="ml" lang="ml">മലയാളം</button><button type="button" data-lang="en" lang="en">English</button></span></span></nav></div>
   <div class="wrap">
     <div>
-      <h1>Free meals across Kerala, shared by people who know</h1>
-      <div class="ml" lang="ml">സൗജന്യ ഭക്ഷണം — എല്ലാവർക്കും</div>
-      <p>Temple annadanam, community kitchens, langars and charity meals in all 14 districts. Anyone can add a place; every listing is checked before it appears.</p>
-      <div class="stats"><div><b id="stCount">–</b><span>places listed</span></div><div><b id="stDist">–</b><span>districts covered</span></div></div>
+      <h1 data-i18n="h1">Free meals across Kerala, shared by people who know</h1>
+      <div class="ml" data-i18n="tag">സൗജന്യ ഭക്ഷണം — എല്ലാവർക്കും</div>
+      <p data-i18n="intro">Temple annadanam, community kitchens, langars and charity meals in all 14 districts. Anyone can add a place; every listing is checked before it appears.</p>
+      <div class="stats"><div><b id="stCount">–</b><span data-i18n="stPlaces">places listed</span></div><div><b id="stDist">–</b><span data-i18n="stDist">districts covered</span></div></div>
     </div>
     <svg class="leafsvg" viewBox="0 0 520 300" role="img" aria-label="A banana leaf meal with rice and curries">
       <defs>
@@ -60,15 +60,15 @@
 
 <div class="filters">
   <div class="wrap">
-    <input id="q" type="search" placeholder="Search by name, town or food…" aria-label="Search">
-    <select id="fDist" aria-label="District"><option value="">All districts</option></select>
-    <select id="fType" aria-label="Type"><option value="">All types</option></select>
+    <input id="q" type="search" placeholder="Search by name, town or food…" aria-label="Search" data-i18n-ph="search">
+    <select id="fDist" aria-label="District"><option value="" data-i18n="allDist">All districts</option></select>
+    <select id="fType" aria-label="Type"><option value="" data-i18n="allTypes">All types</option></select>
   </div>
 </div>
 
 <main class="band">
   <div class="wrap">
-    <div class="listhead"><h2>Places serving free food</h2><span class="count" id="count" aria-live="polite">Loading…</span></div>
+    <div class="listhead"><h2 data-i18n="listH">Places serving free food</h2><span class="count" id="count" aria-live="polite">Loading…</span></div>
     <div class="grid" id="grid"></div>
   </div>
 </main>
@@ -76,48 +76,48 @@
 <section class="submit band" id="submit">
   <div class="wrap">
     <div>
-      <h2>Know a place? Add it.</h2>
-      <p>Help someone find a meal today. Your listing goes to an admin, who checks it before it shows here.</p>
+      <h2 data-i18n="subH">Know a place? Add it.</h2>
+      <p data-i18n="subP">Help someone find a meal today. Your listing goes to an admin, who checks it before it shows here.</p>
       <ol>
-        <li>Fill in what you know — name, town and timing are enough.</li>
-        <li>An admin checks the details.</li>
-        <li>Once approved, it appears in the list.</li>
+        <li data-i18n="step1">Fill in what you know — name, town and timing are enough.</li>
+        <li data-i18n="step2">An admin checks the details.</li>
+        <li data-i18n="step3">Once approved, it appears in the list.</li>
       </ol>
-      <p style="color:var(--muted);font-size:14px">Timings change during festivals and seasons. If you can, add a phone number so people can check before travelling.</p>
+      <p style="color:var(--muted);font-size:14px" data-i18n="subNote">Timings change during festivals and seasons. If you can, add a phone number so people can check before travelling.</p>
     </div>
     <form id="form" novalidate>
       <div id="formMsg" aria-live="polite"></div>
-      <div class="f"><label for="name">Name of the place</label><input id="name" name="name" required maxlength="120" placeholder="e.g. Sree Krishna Temple annadanam"></div>
+      <div class="f"><label for="name" data-i18n="fName">Name of the place</label><input id="name" name="name" required maxlength="120" placeholder="e.g. Sree Krishna Temple annadanam" data-i18n-ph="phName"></div>
       <div class="two f">
-        <div><label for="type">Type</label><select id="type" name="type" required><option value="">Choose…</option></select></div>
-        <div><label for="district">District</label><select id="district" name="district" required><option value="">Choose…</option></select></div>
+        <div><label for="type" data-i18n="fType">Type</label><select id="type" name="type" required><option value="" data-i18n="choose">Choose…</option></select></div>
+        <div><label for="district" data-i18n="fDist">District</label><select id="district" name="district" required><option value="" data-i18n="choose">Choose…</option></select></div>
       </div>
       <div class="two f">
-        <div><label for="place">Town / area</label><input id="place" name="place" required maxlength="80" placeholder="e.g. Guruvayur"></div>
-        <div><label for="timing">When is food served?</label><input id="timing" name="timing" required maxlength="200" placeholder="e.g. Daily, 11:30 am – 2 pm"></div>
+        <div><label for="place" data-i18n="fPlace">Town / area</label><input id="place" name="place" required maxlength="80" placeholder="e.g. Guruvayur" data-i18n-ph="phPlace"></div>
+        <div><label for="timing" data-i18n="fTiming">When is food served?</label><input id="timing" name="timing" required maxlength="200" placeholder="e.g. Daily, 11:30 am – 2 pm" data-i18n-ph="phTiming"></div>
       </div>
-      <div class="f"><label for="address">Address or landmark <small>(optional)</small></label><input id="address" name="address" maxlength="300"></div>
+      <div class="f"><label for="address"><span data-i18n="fAddr">Address or landmark</span> <small data-i18n="opt">(optional)</small></label><input id="address" name="address" maxlength="300"></div>
       <div class="two f">
-        <div><label for="contact">Phone <small>(optional)</small></label><input id="contact" name="contact" maxlength="100" inputmode="tel"></div>
-        <div><label for="map_url">Google Maps link <small>(optional)</small></label><input id="map_url" name="map_url" maxlength="500" inputmode="url" placeholder="https://maps.app.goo.gl/…"></div>
+        <div><label for="contact"><span data-i18n="fPhone">Phone</span> <small data-i18n="opt">(optional)</small></label><input id="contact" name="contact" maxlength="100" inputmode="tel"></div>
+        <div><label for="map_url"><span data-i18n="fMap">Google Maps link</span> <small data-i18n="opt">(optional)</small></label><input id="map_url" name="map_url" maxlength="500" inputmode="url" placeholder="https://maps.app.goo.gl/…"></div>
       </div>
-      <div class="f"><label for="notes">Notes <small>(optional — who it's for, what's served, anything to know)</small></label><textarea id="notes" name="notes" maxlength="600"></textarea></div>
+      <div class="f"><label for="notes"><span data-i18n="fNotes">Notes</span> <small data-i18n="fNotesHint">(optional — who it's for, what's served, anything to know)</small></label><textarea id="notes" name="notes" maxlength="600"></textarea></div>
       <fieldset class="f givebox">
-        <legend>Do they accept donations? <small>(optional)</small></legend>
-        <div class="f"><label for="donate_info">How to donate</label><textarea id="donate_info" name="donate_info" maxlength="400" style="min-height:70px" placeholder="e.g. UPI ID, bank details, or 'donate at the temple counter'"></textarea></div>
-        <div><label for="donate_url">Official donation page <small>(https:// link)</small></label><input id="donate_url" name="donate_url" maxlength="500" inputmode="url" placeholder="https://…"></div>
+        <legend><span data-i18n="fGive">Do they accept donations?</span> <small data-i18n="opt">(optional)</small></legend>
+        <div class="f"><label for="donate_info" data-i18n="fGiveHow">How to donate</label><textarea id="donate_info" name="donate_info" maxlength="400" style="min-height:70px" placeholder="e.g. UPI ID, bank details, or 'donate at the temple counter'" data-i18n-ph="phGive"></textarea></div>
+        <div><label for="donate_url"><span data-i18n="fGiveUrl">Official donation page</span> <small>(https://)</small></label><input id="donate_url" name="donate_url" maxlength="500" inputmode="url" placeholder="https://…"></div>
       </fieldset>
       <div class="two f">
-        <div><label for="submitter_name">Your name <small>(optional, admin only)</small></label><input id="submitter_name" name="submitter_name" maxlength="80"></div>
-        <div><label for="submitter_contact">Your phone or email <small>(optional, admin only)</small></label><input id="submitter_contact" name="submitter_contact" maxlength="100"></div>
+        <div><label for="submitter_name"><span data-i18n="fYou">Your name</span> <small data-i18n="optAdmin">(optional, admin only)</small></label><input id="submitter_name" name="submitter_name" maxlength="80"></div>
+        <div><label for="submitter_contact"><span data-i18n="fYouC">Your phone or email</span> <small data-i18n="optAdmin">(optional, admin only)</small></label><input id="submitter_contact" name="submitter_contact" maxlength="100"></div>
       </div>
       <div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
-      <button class="btn green" type="submit" id="sendBtn">Send for review</button>
+      <button class="btn green" type="submit" id="sendBtn" data-i18n="send">Send for review</button>
     </form>
   </div>
 </section>
 
-<footer><div class="wrap"><span>Free Food Kerala — a community list. Please check timings before you travel.</span><a href="/admin">Admin</a></div></footer>
+<footer><div class="wrap"><span data-i18n="foot">Free Food Kerala — a community list. Please check timings before you travel.</span><a href="/admin" data-i18n="admin">Admin</a></div></footer>
 <script src="/app.js"></script>
 </body>
 </html>

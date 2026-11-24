@@ -22,7 +22,7 @@
     }[status];
     return `<article class="card" data-id="${l.id}">
       <div class="tags"><span class="tag dist">${esc(l.district)}</span><span class="tag">${esc(l.type)}</span></div>
-      <h3>${esc(l.name)}</h3>
+      <h3>${esc(l.name)}</h3>${l.name_ml ? `<div class="meta" lang="ml">${esc(l.name_ml)}</div>` : '<div class="meta">No Malayalam text yet – add it with Edit</div>'}
       <div><b>Where:</b> ${esc(l.place)}${l.address ? ' — ' + esc(l.address) : ''}</div>
       <div><b>When:</b> ${esc(l.timing)}</div>
       ${l.contact ? `<div><b>Phone:</b> ${esc(l.contact)}</div>` : ''}
@@ -44,6 +44,11 @@
       <div class="f"><label>Notes</label><textarea name="notes">${esc(l.notes)}</textarea></div>
       <div class="f"><label>How to donate</label><textarea name="donate_info">${esc(l.donate_info)}</textarea></div>
       ${inp('donate_url', 'Donation link (https://)')}
+      <details class="f" ${l.name_ml ? 'open' : ''}><summary><b>മലയാളം (Malayalam text)</b> – optional; English is shown where empty</summary>
+        ${inp('name_ml', 'പേര് (Name)')}${inp('place_ml', 'സ്ഥലം (Town / area)')}${inp('timing_ml', 'സമയം (Timing)')}
+        <div class="f"><label>കുറിപ്പുകൾ (Notes)</label><textarea name="notes_ml">${esc(l.notes_ml)}</textarea></div>
+        <div class="f"><label>സംഭാവന (How to donate)</label><textarea name="donate_info_ml">${esc(l.donate_info_ml)}</textarea></div>
+      </details>
       <div class="actions"><button class="btn green" type="submit">Save</button><button class="btn ghost" type="button" data-act="cancel">Cancel</button></div>
     </form></article>`;
   }

@@ -1,0 +1,101 @@
+[
+  {
+    "key": "guruvayur-prasada-oottu",
+    "name": "Guruvayur Sri Krishna Temple – Prasada Oottu",
+    "type": "Temple annadanam",
+    "district": "Thrissur",
+    "place": "Guruvayur",
+    "address": "Annadanam hall, Guruvayur Sri Krishna Temple",
+    "timing": "Daily, lunch around 10:30 am – 1:30 pm",
+    "contact": "0487 2556335",
+    "notes": "Free daily meal served as prasadam: rice, sambar, avial, pickle, sometimes payasam. Donations welcome but not required. Temple dress code applies."
+  },
+  {
+    "key": "parassinikadavu-muthappan",
+    "name": "Parassinikadavu Sri Muthappan Temple",
+    "type": "Temple annadanam",
+    "district": "Kannur",
+    "place": "Parassinikadavu",
+    "address": "Banks of the Valapattanam river, about 20 km from Kannur town",
+    "timing": "Daily – free tea and boiled payar all day, free meals at the temple dining hall",
+    "contact": "0497 278 0722",
+    "notes": "Open to people of every faith. Free food and lodging also during the Puthari Thiruvappana festival in early December."
+  },
+  {
+    "key": "sabarimala-annadanam-2026",
+    "name": "Sabarimala Annadanam (Travancore Devaswom Board)",
+    "type": "Temple annadanam",
+    "district": "Pathanamthitta",
+    "place": "Sabarimala Sannidhanam",
+    "address": "Annadanam hall, Sannidhanam",
+    "timing": "Pilgrim season 16 Nov 2026 – 20 Jan 2027 (temple closed 27–30 Dec)",
+    "contact": "",
+    "notes": "Kerala sadya with payasam is served at the annadanam for pilgrims this season. Darshan needs online booking. Only during the pilgrimage season."
+  },
+  {
+    "key": "chottanikkara-annaprasadam",
+    "name": "Chottanikkara Bhagavathy Temple – Annaprasadam",
+    "type": "Temple annadanam",
+    "district": "Ernakulam",
+    "place": "Chottanikkara",
+    "address": "Chottanikkara Bhagavathy Temple, about 17 km from Ernakulam",
+    "timing": "Daily, 1 pm – 3 pm",
+    "contact": "0484 2711032",
+    "notes": "Free lunch for devotees at the annadanam complex. Run by the Cochin Devaswom Board."
+  },
+  {
+    "key": "vaikom-prathal",
+    "name": "Vaikom Sree Mahadeva Temple – Prathal",
+    "type": "Temple annadanam",
+    "district": "Kottayam",
+    "place": "Vaikom",
+    "address": "Oottupura (dining hall), Vaikom Sree Mahadeva Temple",
+    "timing": "Daily lunch (Prathal) – confirm the time at the temple",
+    "contact": "04829 215812",
+    "notes": "The temple is famous for its daily annadanam. Very large crowds for Vaikathashtami."
+  },
+  {
+    "key": "kochi-gurudwara-langar",
+    "name": "Gurudwara Sri Guru Singh Sabha – Langar",
+    "type": "Gurudwara langar",
+    "district": "Ernakulam",
+    "place": "Thevara, Kochi",
+    "address": "Gurudwara Road, Perumanoor, near Cochin Shipyard",
+    "timing": "After congregation prayers: Sunday 11 am, Wednesday 7 pm",
+    "contact": "",
+    "notes": "Kerala's only gurdwara. Free vegetarian langar open to everyone, whatever their religion."
+  },
+  {
+    "key": "dyfi-hridayapoorvam-tvm-mch",
+    "name": "Hridayapoorvam lunch – Thiruvananthapuram Medical College",
+    "type": "Hospital food",
+    "district": "Thiruvananthapuram",
+    "place": "Medical College, Thiruvananthapuram",
+    "address": "Government Medical College Hospital",
+    "timing": "Daily lunch, around noon",
+    "contact": "",
+    "notes": "Free home-cooked lunch packets for patients and bystanders, run by DYFI volunteers since 2017. Hospital food arrangements were under review in 2026, so check locally."
+  },
+  {
+    "key": "dyfi-hridayapoorvam-kozhikode-mch",
+    "name": "Hridayapoorvam lunch – Kozhikode Medical College",
+    "type": "Hospital food",
+    "district": "Kozhikode",
+    "place": "Medical College, Kozhikode",
+    "address": "Government Medical College Hospital",
+    "timing": "Daily lunch, around noon",
+    "contact": "",
+    "notes": "Free lunch packets for patients and bystanders, collected from local households by DYFI volunteers. Hospital food arrangements were under review in 2026, so check locally."
+  },
+  {
+    "key": "kasaragod-district-hospital-meals",
+    "name": "District Hospital – free meals for in-patients",
+    "type": "Hospital food",
+    "district": "Kasaragod",
+    "place": "Kanhangad",
+    "address": "District Hospital, Kasaragod district",
+    "timing": "Breakfast, lunch and dinner for admitted patients",
+    "contact": "",
+    "notes": "The district panchayat added free breakfast in June 2026. Lunch and dinner come from community initiatives. For in-patients only."
+  }
+]

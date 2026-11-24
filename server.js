@@ -34,7 +34,29 @@ db.exec(`
     reviewed_at TEXT
   );
   CREATE INDEX IF NOT EXISTS idx_status ON listings(status);
+  CREATE TABLE IF NOT EXISTS seeds_applied (key TEXT PRIMARY KEY, applied_at TEXT NOT NULL);
 `);
+
+// One-time seed: each entry in seed.json is inserted once (approved) and never re-added,
+// so listings the admin edits or deletes stay that way across redeploys.
+try {
+  const seeds = JSON.parse(fs.readFileSync(path.join(__dirname, 'seed.json'), 'utf8'));
+  const seen = db.prepare('SELECT 1 FROM seeds_applied WHERE key=?');
+  const mark = db.prepare('INSERT INTO seeds_applied (key, applied_at) VALUES (?, ?)');
+  const ins = db.prepare(`INSERT INTO listings (name,type,district,place,address,timing,contact,map_url,notes,submitter_name,status,created_at,reviewed_at)
+    VALUES (?,?,?,?,?,?,?,?,?,'Seed data',?,?,?)`);
+  let added = 0;
+  for (const s of seeds) {
+    if (!s.key || seen.get(s.key)) continue;
+    const t = new Date().toISOString();
+    ins.run(s.name, s.type, s.district, s.place, s.address || '', s.timing, s.contact || '', s.map_url || '', s.notes || '', 'approved', t, t);
+    mark.run(s.key, t);
+    added++;
+  }
+  if (added) console.log(`Seeded ${added} listing(s).`);
+} catch (e) {
+  if (e.code !== 'ENOENT') console.error('Seed failed:', e.message);
+}
 
 const DISTRICTS = ['Thiruvananthapuram', 'Kollam', 'Pathanamthitta', 'Alappuzha', 'Kottayam', 'Idukki', 'Ernakulam',
   'Thrissur', 'Palakkad', 'Malappuram', 'Kozhikode', 'Wayanad', 'Kannur', 'Kasaragod'];

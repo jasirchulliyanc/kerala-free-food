@@ -2,7 +2,7 @@
 VOICE: warm, generous, practical — a community noticeboard, not an app store.
 IDEA: a banana-leaf sadya: every listing is a serving on the leaf.
 PICTURE: a large banana leaf with rice and small curries in the header band.
-COLOUR and TYPE: leaf green field, rice white, turmeric accent; Baloo Chettan 2 (Malayalam-ready) for the hero only; Inter for everything else.
+COLOUR and TYPE: leaf green field, rice white, turmeric accent; Inter for all text; Noto Sans Malayalam for the Malayalam line.
 LAYOUT: green band with title + leaf, sticky filters, card grid, calm one-column submit form.
 */
 :root{color-scheme:light dark;
@@ -13,7 +13,7 @@ LAYOUT: green band with title + leaf, sticky filters, card grid, calm one-column
 *{box-sizing:border-box;min-width:0}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:clip}
 h1,h2,h3{font-family:Inter,system-ui,sans-serif;font-weight:700;line-height:1.2;margin:0;text-wrap:balance;letter-spacing:-0.01em}
-.hero h1{font-family:"Baloo Chettan 2",Inter,sans-serif;line-height:1.08;letter-spacing:0}
+.hero h1{line-height:1.12;letter-spacing:-0.02em}
 a{color:inherit}
 .wrap{max-width:1240px;margin:0 auto;padding:0 max(4vw,16px)}
 
@@ -21,7 +21,7 @@ a{color:inherit}
 .hero{background:var(--leaf);color:var(--on-leaf);position:relative;overflow:hidden}
 .hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px;align-items:center;padding-block:clamp(28px,4vw,56px)}
 .hero h1{font-size:clamp(34px,5vw,52px);font-weight:700}
-.hero .ml{font-family:"Baloo Chettan 2",sans-serif;font-size:22px;color:var(--turmeric);margin:6px 0 12px}
+.hero .ml{font-family:"Noto Sans Malayalam",Inter,sans-serif;font-weight:500;font-size:20px;color:var(--turmeric);margin:6px 0 12px}
 .hero p{max-width:52ch;margin:0 0 20px;opacity:.92}
 .hero .leafsvg{width:100%;height:auto;max-height:300px}
 .stats{display:flex;gap:28px;flex-wrap:wrap}

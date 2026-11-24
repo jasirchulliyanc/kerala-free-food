@@ -55,7 +55,11 @@ label small{font-weight:400;color:var(--muted)}
 .count{color:var(--muted);font-size:15px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px}
-.card h3{font-size:22px}
+.card,.card h3,.listhead h2{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",Arial,sans-serif}
+.card h3{font-size:19px;font-weight:600;line-height:1.3;letter-spacing:0}
+.listhead h2{font-size:26px;font-weight:700;line-height:1.25}
+.card .row,.card .give{font-size:15px;line-height:1.5}
+.card .notes{color:light-dark(#3f4a42,#c4cfc6);line-height:1.5}
 .tags{display:flex;gap:6px;flex-wrap:wrap}
 .tag{font-size:13px;padding:3px 10px;border-radius:999px;background:light-dark(#e8f2e6,#1f3524);color:light-dark(var(--leaf-d),#bfe0c3)}
 .tag.dist{background:light-dark(#fff3cc,#3a3010);color:light-dark(#6b4f00,#f6d878)}
